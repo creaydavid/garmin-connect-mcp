@@ -13,10 +13,10 @@
 
 ## 3. 真实 API 冒烟验证
 
-- [ ] 3.1 用真实账号冒烟测试含 pace target 的 workout：`create_workout` 传入 `targetType:"pace", targetValueOne:"5:00", targetValueTwo:"6:00"`（min/km），确认 Garmin 接受转换后的 m/s payload 并返回 workoutId
-- [ ] 3.2 验证转换精度：`"5:48"` → 2.8736 m/s 量级（对照真实 workout 数据 2.5-3.3 范围），确认 Garmin 不拒绝
-- [ ] 3.3 冒烟后 `delete_workout` 清理
+- [x] 3.1 用真实账号冒烟测试含 pace target 的 workout：`create_workout` 传入 `targetType:"pace", targetValueOne:"5:00", targetValueTwo:"6:00"`（min/km），确认 Garmin 接受转换后的 m/s payload 并返回 workoutId
+- [x] 3.2 验证转换精度：`"5:48"` → 2.8736 m/s 量级（对照真实 workout 数据 2.5-3.3 范围），确认 Garmin 不拒绝
+- [x] 3.3 冒烟后 `delete_workout` 清理
 
 ## 4. 文档
 
-- [ ] 4.1 若 README 的 Workouts section 有 target 说明，补充 pace 用 mm:ss(min/km) 格式（检查 README 是否需要更新）
+- [x] 4.1 若 README 的 Workouts section 有 target 说明，补充 pace 用 mm:ss(min/km) 格式（检查 README 是否需要更新）
