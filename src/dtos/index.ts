@@ -4,3 +4,4 @@ export * from './devices.dto';
 export * from './performance.dto';
 export * from './wellness.dto';
 export * from './write.dto';
+export * from './workout.dto';
