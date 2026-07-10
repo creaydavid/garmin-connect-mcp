@@ -94,6 +94,105 @@ import {
   DAILY_STEPS_MAX_RANGE_DAYS,
   BIOMETRIC_STATS_ENDPOINT,
 } from '../constants/garmin-endpoints';
+import {
+  STEP_TYPE,
+  CONDITION_TYPE,
+  TARGET_TYPE,
+  runningSportType,
+  lookupStepType,
+  lookupConditionType,
+  lookupTargetType,
+} from '../constants/workout-types';
+import type {
+  CreateWorkoutDto,
+  ExecutableStepInput,
+  RepeatStepInput,
+  StepInput,
+} from '../dtos/workout.dto';
+
+function buildExecutableStep(step: ExecutableStepInput, order: number): Record<string, unknown> {
+  const stepType = lookupStepType(step.type);
+  const endCondition = lookupConditionType(step.endCondition);
+  const result: Record<string, unknown> = {
+    type: 'ExecutableStepDTO',
+    stepOrder: order,
+    stepType: {
+      stepTypeId: stepType.stepTypeId,
+      stepTypeKey: stepType.stepTypeKey,
+      displayOrder: stepType.displayOrder,
+    },
+    endCondition: {
+      conditionTypeId: endCondition.conditionTypeId,
+      conditionTypeKey: endCondition.conditionTypeKey,
+      displayOrder: endCondition.displayOrder,
+      displayable: endCondition.displayable,
+    },
+    endConditionValue: step.endConditionValue,
+  };
+
+  const targetKey = step.targetType ?? 'no.target';
+  const targetType = lookupTargetType(targetKey);
+  const targetTypeObj: Record<string, unknown> = {
+    workoutTargetTypeId: targetType.workoutTargetTypeId,
+    workoutTargetTypeKey: targetType.workoutTargetTypeKey,
+    displayOrder: targetType.displayOrder,
+  };
+  result.targetType = targetTypeObj;
+
+  if (step.targetType === 'pace' || step.targetType === 'heart_rate') {
+    result.targetValueOne = step.targetValueOne;
+    result.targetValueTwo = step.targetValueTwo;
+  }
+
+  return result;
+}
+
+function buildRepeatGroup(step: RepeatStepInput, order: number): Record<string, unknown> {
+  const iterationsCondition = CONDITION_TYPE.iterations;
+  return {
+    type: 'RepeatGroupDTO',
+    stepOrder: order,
+    stepType: {
+      stepTypeId: STEP_TYPE.repeat.stepTypeId,
+      stepTypeKey: STEP_TYPE.repeat.stepTypeKey,
+      displayOrder: STEP_TYPE.repeat.displayOrder,
+    },
+    numberOfIterations: step.numberOfIterations,
+    workoutSteps: step.steps.map((s, i) => buildExecutableStep(s, i + 1)),
+    endCondition: {
+      conditionTypeId: iterationsCondition.conditionTypeId,
+      conditionTypeKey: iterationsCondition.conditionTypeKey,
+      displayOrder: iterationsCondition.displayOrder,
+      displayable: iterationsCondition.displayable,
+    },
+    endConditionValue: step.numberOfIterations,
+    smartRepeat: false,
+  };
+}
+
+function buildWorkoutSegment(steps: StepInput[]): Record<string, unknown> {
+  return {
+    segmentOrder: 1,
+    sportType: { ...runningSportType },
+    workoutSteps: steps.map((s, i) =>
+      s.type === 'repeat' ? buildRepeatGroup(s, i + 1) : buildExecutableStep(s, i + 1),
+    ),
+  };
+}
+
+function buildWorkoutPayload(input: CreateWorkoutDto): Record<string, unknown> {
+  const payload: Record<string, unknown> = {
+    workoutName: input.workoutName,
+    sportType: { ...runningSportType },
+    estimatedDurationInSecs: input.estimatedDurationInSecs,
+    author: {},
+    workoutSegments: [buildWorkoutSegment(input.steps)],
+  };
+  if (input.description !== undefined) {
+    payload.description = input.description;
+  }
+  return payload;
+}
 
 function todayString(): string {
   return new Date().toISOString().split('T')[0]!;
