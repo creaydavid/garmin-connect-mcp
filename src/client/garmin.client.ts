@@ -97,7 +97,6 @@ import {
 import {
   STEP_TYPE,
   CONDITION_TYPE,
-  TARGET_TYPE,
   runningSportType,
   lookupStepType,
   lookupConditionType,
