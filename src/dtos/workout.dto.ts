@@ -6,8 +6,8 @@ export type ExecutableStepInput = {
   endCondition: 'time' | 'distance';
   endConditionValue: number;
   targetType?: 'no.target' | 'pace' | 'heart_rate';
-  targetValueOne?: number;
-  targetValueTwo?: number;
+  targetValueOne?: number | string;
+  targetValueTwo?: number | string;
 };
 
 export type RepeatStepInput = {
@@ -24,23 +24,63 @@ const executableStepSchema = z
     endCondition: z.enum(['time', 'distance']),
     endConditionValue: z.number().positive(),
     targetType: z.enum(['no.target', 'pace', 'heart_rate']).optional(),
-    targetValueOne: z.number().optional(),
-    targetValueTwo: z.number().optional(),
+    targetValueOne: z
+      .union([z.number(), z.string()])
+      .optional()
+      .describe('Target zone lower bound. pace: mm:ss (min/km) string like "5:48"; heart_rate: bpm number like 135'),
+    targetValueTwo: z
+      .union([z.number(), z.string()])
+      .optional()
+      .describe('Target zone upper bound. pace: mm:ss (min/km) string like "6:30"; heart_rate: bpm number like 157'),
   })
   .refine(
     (data) => {
-      if (data.targetType === 'pace' || data.targetType === 'heart_rate') {
-        return (
-          data.targetValueOne !== undefined &&
-          data.targetValueTwo !== undefined &&
-          data.targetValueOne <= data.targetValueTwo
-        );
+      if (data.targetType === 'pace') {
+        if (
+          data.targetValueOne === undefined ||
+          data.targetValueTwo === undefined
+        ) {
+          return false;
+        }
+        if (
+          typeof data.targetValueOne !== 'string' ||
+          typeof data.targetValueTwo !== 'string'
+        ) {
+          return false;
+        }
+        const paceRegex = /^\d+:\d{2}$/;
+        if (!paceRegex.test(data.targetValueOne) || !paceRegex.test(data.targetValueTwo)) {
+          return false;
+        }
+        const parseTotalSec = (v: string): number => {
+          const [mm, ss] = v.split(':');
+          return Number(mm) * 60 + Number(ss);
+        };
+        if (parseTotalSec(data.targetValueOne) === 0 || parseTotalSec(data.targetValueTwo) === 0) {
+          return false;
+        }
+        return true;
+      }
+      if (data.targetType === 'heart_rate') {
+        if (
+          data.targetValueOne === undefined ||
+          data.targetValueTwo === undefined
+        ) {
+          return false;
+        }
+        if (
+          typeof data.targetValueOne !== 'number' ||
+          typeof data.targetValueTwo !== 'number'
+        ) {
+          return false;
+        }
+        return data.targetValueOne <= data.targetValueTwo;
       }
       return true;
     },
     {
       message:
-        'targetType=pace or heart_rate requires targetValueOne and targetValueTwo, with targetValueOne <= targetValueTwo',
+        'pace target requires targetValueOne/Two as mm:ss (min/km) strings, non-zero; heart_rate target requires targetValueOne/Two as numbers (bpm) with One <= Two',
     },
   );
 
