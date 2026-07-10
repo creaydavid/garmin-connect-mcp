@@ -2,6 +2,7 @@
 change: fix-pace-target
 design-doc: docs/superpowers/specs/2026-07-10-fix-pace-target-design.md
 base-ref: d9dd291f9fef0fe35e48e15b23c8b68acc8940a8
+archived-with: 2026-07-10-fix-pace-target
 ---
 
 # fix-pace-target 实施计划
@@ -26,6 +27,7 @@ base-ref: d9dd291f9fef0fe35e48e15b23c8b68acc8940a8
 - 不引入测试框架；验证靠 `npm run build` + `npx tsc --noEmit` + 人工核对 refine 逻辑 + 真实 API 冒烟
 - 预存在 2 个 `garmin.client.test.ts` TS 错误（`getSteps` / `getLatestWeight`）与本 change 无关，忽略
 
+archived-with: 2026-07-10-fix-pace-target
 ---
 
 ## 文件结构
@@ -37,6 +39,7 @@ base-ref: d9dd291f9fef0fe35e48e15b23c8b68acc8940a8
 
 不新建文件。两个文件改动相互独立可分别编译验证，但逻辑上 DTO 先行（定义输入契约），client 后行（消费契约）。
 
+archived-with: 2026-07-10-fix-pace-target
 ---
 
 ### Task 1: DTO 层 — 类型与 schema 改为 number|string 联合 + 重写 refine 分流
@@ -205,6 +208,7 @@ git commit -m "fix(dto): pace target refine split by targetType, accept mm:ss st
 Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 ```
 
+archived-with: 2026-07-10-fix-pace-target
 ---
 
 ### Task 2: Client 层 — 新增 parsePaceToMs + buildExecutableStep pace 分支转换
@@ -304,6 +308,7 @@ git commit -m "fix(client): convert pace mm:ss to m/s in buildExecutableStep
 Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 ```
 
+archived-with: 2026-07-10-fix-pace-target
 ---
 
 ### Task 3: 真实 API 冒烟验证
@@ -364,6 +369,7 @@ Expected: 删除成功（Garmin 返回 204 或成功状态）。
 
 在 commit message 或工作记录中记下：pace target `"5:00"`/`"6:00"`（min/km）成功转换为 m/s 被 Garmin 接受，返回 workoutId 后已清理。此步不产生代码 commit（无代码变更）。
 
+archived-with: 2026-07-10-fix-pace-target
 ---
 
 ### Task 4: 文档检查
@@ -392,6 +398,7 @@ Expected: 删除成功（Garmin 返回 204 或成功状态）。
 
 若 Step 1 发现 README 确有 target 说明需要更新，则补充 pace 用 mm:ss(min/km) 格式后 commit。当前判断无需更新。
 
+archived-with: 2026-07-10-fix-pace-target
 ---
 
 ## Self-Review
@@ -430,3 +437,4 @@ Expected: 删除成功（Garmin 返回 204 或成功状态）。
 - refine 返回 `boolean` — Task 1 Step 3 所有分支均返回 true/false
 
 无类型不一致。
+

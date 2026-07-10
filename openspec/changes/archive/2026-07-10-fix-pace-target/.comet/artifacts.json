@@ -1,0 +1,9 @@
+{
+  "openspec_proposal": "openspec/changes/fix-pace-target/proposal.md",
+  "openspec_design": "openspec/changes/fix-pace-target/design.md",
+  "openspec_tasks": "openspec/changes/fix-pace-target/tasks.md",
+  "openspec_delta_spec": "openspec/changes/fix-pace-target/specs/workout-management/spec.md",
+  "handoff_context": "openspec/changes/fix-pace-target/.comet/handoff/design-context.json",
+  "handoff_markdown": "openspec/changes/fix-pace-target/.comet/handoff/design-context.md",
+  "archive_directory": "openspec/changes/archive/2026-07-10-fix-pace-target"
+}

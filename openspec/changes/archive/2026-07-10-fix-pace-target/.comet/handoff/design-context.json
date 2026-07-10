@@ -1,0 +1,14 @@
+{
+  "change": "fix-pace-target",
+  "phase": "design",
+  "mode": "compact",
+  "canonical_spec": "openspec",
+  "generated_by": "comet-handoff.sh",
+  "context_hash": "77919ad45c388eb10133d460f63101765dab0eee801b99f21b4c6b5f5943059b",
+  "files": [
+    { "path": "openspec/changes/fix-pace-target/proposal.md", "sha256": "3c339bf15db836a488f83be84ef7ad820ee3dcfb3ab5110f7daf65424b190de7" },
+    { "path": "openspec/changes/fix-pace-target/design.md", "sha256": "cd3f89c23d6bd3ff9057b05b9a0ab82b5cb55cfa4e4991e74a4dbaef0e56ac3c" },
+    { "path": "openspec/changes/fix-pace-target/tasks.md", "sha256": "dccadc7010bc8b13e985b978da37d0780a6cd6bccb496912069811c944a5bd3d" },
+    { "path": "openspec/changes/fix-pace-target/specs/workout-management/spec.md", "sha256": "d85d57ba335bdb4ad3d3975016de8b10332c0776996a939fad8ce04b51189ac9" }
+  ]
+}
