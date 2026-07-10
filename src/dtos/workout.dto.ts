@@ -48,7 +48,7 @@ const executableStepSchema = z
         ) {
           return false;
         }
-        const paceRegex = /^\d+:\d{2}$/;
+        const paceRegex = /^\d+:[0-5]\d$/;
         if (!paceRegex.test(data.targetValueOne) || !paceRegex.test(data.targetValueTwo)) {
           return false;
         }
