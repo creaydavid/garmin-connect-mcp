@@ -109,6 +109,12 @@ import type {
   StepInput,
 } from '../dtos/workout.dto';
 
+function parsePaceToMs(value: string): number {
+  const [mm, ss] = value.split(':');
+  const totalSec = Number(mm) * 60 + Number(ss);
+  return 1000 / totalSec;
+}
+
 function buildExecutableStep(step: ExecutableStepInput, order: number): Record<string, unknown> {
   const stepType = lookupStepType(step.type);
   const endCondition = lookupConditionType(step.endCondition);
@@ -138,7 +144,16 @@ function buildExecutableStep(step: ExecutableStepInput, order: number): Record<s
   };
   result.targetType = targetTypeObj;
 
-  if (step.targetType === 'pace' || step.targetType === 'heart_rate') {
+  if (step.targetType === 'pace') {
+    result.targetValueOne =
+      typeof step.targetValueOne === 'string'
+        ? parsePaceToMs(step.targetValueOne)
+        : step.targetValueOne;
+    result.targetValueTwo =
+      typeof step.targetValueTwo === 'string'
+        ? parsePaceToMs(step.targetValueTwo)
+        : step.targetValueTwo;
+  } else if (step.targetType === 'heart_rate') {
     result.targetValueOne = step.targetValueOne;
     result.targetValueTwo = step.targetValueTwo;
   }
