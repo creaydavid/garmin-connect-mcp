@@ -25,9 +25,9 @@
 
 ## 5. Tools 注册
 
-- [ ] 5.1 新建 `src/tools/workout.tools.ts`，导出 `registerWorkoutTools(server, client)`，注册 `create_workout` / `delete_workout` / `schedule_workout` 三个 tool，inputSchema 用对应 Zod schema 的 `.shape`，返回 `content:[{type:'text', text:JSON.stringify(data,null,2)}]`
-- [ ] 5.2 在 `src/tools/index.ts` barrel 导出 registerWorkoutTools
-- [ ] 5.3 在 `src/index.ts` import 并调用 `registerWorkoutTools(server, client)`
+- [x] 5.1 新建 `src/tools/workout.tools.ts`，导出 `registerWorkoutTools(server, client)`，注册 `create_workout` / `delete_workout` / `schedule_workout` 三个 tool，inputSchema 用对应 Zod schema 的 `.shape`，返回 `content:[{type:'text', text:JSON.stringify(data,null,2)}]`
+- [x] 5.2 在 `src/tools/index.ts` barrel 导出 registerWorkoutTools
+- [x] 5.3 在 `src/index.ts` import 并调用 `registerWorkoutTools(server, client)`
 
 ## 6. 构建与验证
 
