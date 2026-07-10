@@ -31,8 +31,8 @@
 
 ## 6. 构建与验证
 
-- [ ] 6.1 运行 `npm run build`（tsup）确认 TypeScript strict 编译通过，无类型错误
-- [ ] 6.2 验证 target 区间（pace/heart_rate）payload 字段假设：对照 python `workout.py` 模型与真实 Garmin workout JSON（可通过既有 `get_workout` 读取一个含 target 的真实 workout 比对字段），修正 `buildExecutableStep` 中 targetValueOne/targetValueTwo/targetValueUnit 的填充逻辑
+- [x] 6.1 运行 `npm run build`（tsup）确认 TypeScript strict 编译通过，无类型错误
+- [x] 6.2 验证 target 区间（pace/heart_rate）payload 字段假设：对照 python `workout.py` 模型与真实 Garmin workout JSON（可通过既有 `get_workout` 读取一个含 target 的真实 workout 比对字段），修正 `buildExecutableStep` 中 targetValueOne/targetValueTwo/targetValueUnit 的填充逻辑
 - [ ] 6.3 手动冒烟测试（需 GARMIN_EMAIL/GARMIN_PASSWORD 环境变量）：调用 create_workout 创建一个简单跑步课（warmup→interval→cooldown），确认返回 workoutId；调用 schedule_workout 排程；调用 delete_workout 清理
 
 ## 7. 文档
