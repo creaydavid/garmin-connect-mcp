@@ -19,9 +19,9 @@
 
 ## 4. 客户端方法
 
-- [ ] 4.1 在 `garmin.client.ts` 新增 `createWorkout(input: CreateWorkoutDto): Promise<unknown>`，调用 buildWorkoutPayload 后 `POST /workout-service/workout`（复用 WORKOUT_ENDPOINT 常量）
-- [ ] 4.2 新增 `deleteWorkout(workoutId: string): Promise<unknown>`，`DELETE /workout-service/workout/${workoutId}`（复用 WORKOUT_ENDPOINT）
-- [ ] 4.3 新增 `scheduleWorkout(workoutId: string, date: string): Promise<unknown>`，`POST /workout-service/schedule/${workoutId}`，body `{date}`（复用 SCHEDULED_WORKOUT_ENDPOINT）
+- [x] 4.1 在 `garmin.client.ts` 新增 `createWorkout(input: CreateWorkoutDto): Promise<unknown>`，调用 buildWorkoutPayload 后 `POST /workout-service/workout`（复用 WORKOUT_ENDPOINT 常量）
+- [x] 4.2 新增 `deleteWorkout(workoutId: string): Promise<unknown>`，`DELETE /workout-service/workout/${workoutId}`（复用 WORKOUT_ENDPOINT）
+- [x] 4.3 新增 `scheduleWorkout(workoutId: string, date: string): Promise<unknown>`，`POST /workout-service/schedule/${workoutId}`，body `{date}`（复用 SCHEDULED_WORKOUT_ENDPOINT）
 
 ## 5. Tools 注册
 
