@@ -1,0 +1,9 @@
+{
+  "openspec_proposal": "openspec/changes/add-workout-crud/proposal.md",
+  "openspec_design": "openspec/changes/add-workout-crud/design.md",
+  "openspec_tasks": "openspec/changes/add-workout-crud/tasks.md",
+  "openspec_delta_spec": "openspec/changes/add-workout-crud/specs/workout-management/spec.md",
+  "handoff_context": "openspec/changes/add-workout-crud/.comet/handoff/design-context.json",
+  "handoff_markdown": "openspec/changes/add-workout-crud/.comet/handoff/design-context.md",
+  "archive_directory": "openspec/changes/archive/2026-07-10-add-workout-crud"
+}

@@ -1,0 +1,14 @@
+{
+  "change": "add-workout-crud",
+  "phase": "design",
+  "mode": "compact",
+  "canonical_spec": "openspec",
+  "generated_by": "comet-handoff.sh",
+  "context_hash": "9b42a6932e1b280d60ab3a4907b4b166e774eb42b9a32e57cb882f9a8197190c",
+  "files": [
+    { "path": "openspec/changes/add-workout-crud/proposal.md", "sha256": "d12039e0d2a3d1b811e27cc83a980080aeae1010fb4bc495538f6751231b1317" },
+    { "path": "openspec/changes/add-workout-crud/design.md", "sha256": "24b2dad87e814f4777b756934d55b0e7b1398eaf222128370489f554d69b3514" },
+    { "path": "openspec/changes/add-workout-crud/tasks.md", "sha256": "b34dd165a4774c4303414cd39cca5da573c619abe8dbb36f5b38f60d3a79357f" },
+    { "path": "openspec/changes/add-workout-crud/specs/workout-management/spec.md", "sha256": "5cd581b67a8bf4a3f8bf5151f1a4997d43a125e8a1246a3b8bca5b74518a0d93" }
+  ]
+}

@@ -2,6 +2,7 @@
 change: add-workout-crud
 design-doc: docs/superpowers/specs/2026-07-10-add-workout-crud-design.md
 base-ref: 9478e37ff48c8414e77208ad1cb748be481da097
+archived-with: 2026-07-10-add-workout-crud
 ---
 
 # Workout CRUD 实施计划
@@ -29,6 +30,7 @@ base-ref: 9478e37ff48c8414e77208ad1cb748be481da097
 - stepOrder / segmentOrder 由数组索引 +1 自动生成，LLM 不传
 - 不引入测试框架，验证方式：tsup 编译 + payload 结构比对 + 真实 API 冒烟
 
+archived-with: 2026-07-10-add-workout-crud
 ---
 
 ## 文件结构
@@ -45,6 +47,7 @@ base-ref: 9478e37ff48c8414e77208ad1cb748be481da097
 | `src/index.ts` | 修改 | import + 调用 registerWorkoutTools |
 | `README.md` | 修改 | 补充 workout tools 说明 |
 
+archived-with: 2026-07-10-add-workout-crud
 ---
 
 ## Task 1: 常量层 — workout-types.ts
@@ -164,6 +167,7 @@ git commit -m "feat(constants): add workout type enums and lookup helpers
 Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 ```
 
+archived-with: 2026-07-10-add-workout-crud
 ---
 
 ## Task 2: DTO 层 — workout.dto.ts
@@ -315,6 +319,7 @@ git commit -m "feat(dto): add workout DTOs with recursive StepInput schema
 Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 ```
 
+archived-with: 2026-07-10-add-workout-crud
 ---
 
 ## Task 3: 客户端 payload 组装函数
@@ -462,6 +467,7 @@ git commit -m "feat(client): add workout payload assembly functions
 Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 ```
 
+archived-with: 2026-07-10-add-workout-crud
 ---
 
 ## Task 4: 客户端方法 — createWorkout / deleteWorkout / scheduleWorkout
@@ -522,6 +528,7 @@ git commit -m "feat(client): add createWorkout, deleteWorkout, scheduleWorkout m
 Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 ```
 
+archived-with: 2026-07-10-add-workout-crud
 ---
 
 ## Task 5: Tools 注册 — workout.tools.ts
@@ -668,6 +675,7 @@ git commit -m "feat(tools): register create_workout, delete_workout, schedule_wo
 Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 ```
 
+archived-with: 2026-07-10-add-workout-crud
 ---
 
 ## Task 6: 构建验证与 payload 结构比对
@@ -734,6 +742,7 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 
 如果无变更，跳过此步。
 
+archived-with: 2026-07-10-add-workout-crud
 ---
 
 ## Task 7: 真实 API 冒烟测试
@@ -855,6 +864,7 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 
 如果无变更，跳过此步。
 
+archived-with: 2026-07-10-add-workout-crud
 ---
 
 ## Task 8: 文档 — 更新 README
@@ -893,3 +903,4 @@ git commit -m "docs(readme): add workout tools to available tools list
 
 Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 ```
+
