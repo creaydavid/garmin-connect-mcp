@@ -14,8 +14,8 @@
 
 ## 3. 客户端 payload 组装
 
-- [ ] 3.1 在 `src/client/garmin.client.ts` 新增私有组装函数（移植 python `workout.py` helper）：`buildExecutableStep`（映射 stepType/endCondition/targetType 到 Garmin ExecutableStepDTO 双字段）、`buildRepeatGroup`（映射 RepeatGroupDTO，递归组装子步骤）、`buildWorkoutSegment`、`buildWorkoutPayload`
-- [ ] 3.2 组装函数从 `constants/workout-types` 查 typeId/key，按 python 参考填充 displayOrder/displayable/smartRepeat 等元数据字段；undefined 字段不写入 payload
+- [x] 3.1 在 `src/client/garmin.client.ts` 新增私有组装函数（移植 python `workout.py` helper）：`buildExecutableStep`（映射 stepType/endCondition/targetType 到 Garmin ExecutableStepDTO 双字段）、`buildRepeatGroup`（映射 RepeatGroupDTO，递归组装子步骤）、`buildWorkoutSegment`、`buildWorkoutPayload`
+- [x] 3.2 组装函数从 `constants/workout-types` 查 typeId/key，按 python 参考填充 displayOrder/displayable/smartRepeat 等元数据字段；undefined 字段不写入 payload
 
 ## 4. 客户端方法
 
