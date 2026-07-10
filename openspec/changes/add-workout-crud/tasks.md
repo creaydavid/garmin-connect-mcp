@@ -6,11 +6,11 @@
 
 ## 2. DTO 层
 
-- [ ] 2.1 新建 `src/dtos/workout.dto.ts`，定义高层入参 type + Zod schema：`CreateWorkoutDto`/`createWorkoutSchema`（workoutName 必填、description 可选、estimatedDurationInSecs 必填正整数、steps 非空数组）
-- [ ] 2.2 在 workout.dto.ts 定义 `StepInput` discriminated union（按 `type` 区分可执行步与 repeat 组）：可执行步含 `type`(warmup/interval/recovery/cooldown/rest)、`endCondition`(time/distance)、`endConditionValue`、可选 `targetType`(no.target/pace/heart_rate) 与 `targetValueOne`/`targetValueTwo`；repeat 组含 `type:"repeat"`、`numberOfIterations`≥1、`steps` 递归数组
-- [ ] 2.3 用 `z.lazy` 或 `z.union` 实现 StepInput 递归 schema，保证 RepeatGroup 可嵌套子步骤；对 targetType=pace/heart_rate 用 `refine` 校验 targetValueOne 与 targetValueTwo 必须成对出现
-- [ ] 2.4 定义 `DeleteWorkoutDto`/`deleteWorkoutSchema`（workoutId 字符串）与 `ScheduleWorkoutDto`/`scheduleWorkoutSchema`（workoutId 字符串 + date dateString）
-- [ ] 2.5 在 `src/dtos/index.ts` barrel 导出 workout DTO
+- [x] 2.1 新建 `src/dtos/workout.dto.ts`，定义高层入参 type + Zod schema：`CreateWorkoutDto`/`createWorkoutSchema`（workoutName 必填、description 可选、estimatedDurationInSecs 必填正整数、steps 非空数组）
+- [x] 2.2 在 workout.dto.ts 定义 `StepInput` discriminated union（按 `type` 区分可执行步与 repeat 组）：可执行步含 `type`(warmup/interval/recovery/cooldown/rest)、`endCondition`(time/distance)、`endConditionValue`、可选 `targetType`(no.target/pace/heart_rate) 与 `targetValueOne`/`targetValueTwo`；repeat 组含 `type:"repeat"`、`numberOfIterations`≥1、`steps` 递归数组
+- [x] 2.3 用 `z.lazy` 或 `z.union` 实现 StepInput 递归 schema，保证 RepeatGroup 可嵌套子步骤；对 targetType=pace/heart_rate 用 `refine` 校验 targetValueOne 与 targetValueTwo 必须成对出现
+- [x] 2.4 定义 `DeleteWorkoutDto`/`deleteWorkoutSchema`（workoutId 字符串）与 `ScheduleWorkoutDto`/`scheduleWorkoutSchema`（workoutId 字符串 + date dateString）
+- [x] 2.5 在 `src/dtos/index.ts` barrel 导出 workout DTO
 
 ## 3. 客户端 payload 组装
 
