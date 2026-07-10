@@ -7,9 +7,9 @@
 
 ## 2. 客户端组装（garmin.client.ts）
 
-- [ ] 2.1 新增模块级私有纯函数 `parsePaceToMs(value: string): number`：解析 mm:ss（min/km）为 m/s，公式 `1000 / (mm*60 + ss)`，不四舍五入
-- [ ] 2.2 修改 `buildExecutableStep` 的 pace 分支：`targetValueOne`/`targetValueTwo` 用 `parsePaceToMs` 转换后再赋值 `result.targetValueOne/Two`；heart_rate 分支保持透传 number；no.target 不设 targetValue
-- [ ] 2.3 验证编译：`npm run build` + `npx tsc --noEmit`（零新增错误）
+- [x] 2.1 新增模块级私有纯函数 `parsePaceToMs(value: string): number`：解析 mm:ss（min/km）为 m/s，公式 `1000 / (mm*60 + ss)`，不四舍五入
+- [x] 2.2 修改 `buildExecutableStep` 的 pace 分支：`targetValueOne`/`targetValueTwo` 用 `parsePaceToMs` 转换后再赋值 `result.targetValueOne/Two`；heart_rate 分支保持透传 number；no.target 不设 targetValue
+- [x] 2.3 验证编译：`npm run build` + `npx tsc --noEmit`（零新增错误）
 
 ## 3. 真实 API 冒烟验证
 
