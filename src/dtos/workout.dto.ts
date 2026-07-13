@@ -5,7 +5,7 @@ export type ExecutableStepInput = {
   type: 'warmup' | 'interval' | 'recovery' | 'cooldown' | 'rest';
   endCondition: 'time' | 'distance';
   endConditionValue: number;
-  targetType?: 'no.target' | 'pace' | 'heart_rate';
+  targetType?: 'no.target' | 'pace' | 'heart_rate' | 'cadence';
   targetValueOne?: number | string;
   targetValueTwo?: number | string;
 };
@@ -23,15 +23,15 @@ const executableStepSchema = z
     type: z.enum(['warmup', 'interval', 'recovery', 'cooldown', 'rest']),
     endCondition: z.enum(['time', 'distance']),
     endConditionValue: z.number().positive(),
-    targetType: z.enum(['no.target', 'pace', 'heart_rate']).optional(),
+    targetType: z.enum(['no.target', 'pace', 'heart_rate', 'cadence']).optional(),
     targetValueOne: z
       .union([z.number(), z.string()])
       .optional()
-      .describe('Target zone lower bound. pace: mm:ss (min/km) string like "5:48"; heart_rate: bpm number like 135'),
+      .describe('Target zone lower bound. pace: mm:ss (min/km) string like "5:48"; heart_rate: bpm number like 135; cadence: spm number like 180'),
     targetValueTwo: z
       .union([z.number(), z.string()])
       .optional()
-      .describe('Target zone upper bound. pace: mm:ss (min/km) string like "6:30"; heart_rate: bpm number like 157'),
+      .describe('Target zone upper bound. pace: mm:ss (min/km) string like "6:30"; heart_rate: bpm number like 157; cadence: spm number like 260'),
   })
   .refine(
     (data) => {
@@ -76,11 +76,26 @@ const executableStepSchema = z
         }
         return data.targetValueOne <= data.targetValueTwo;
       }
+      if (data.targetType === 'cadence') {
+        if (
+          data.targetValueOne === undefined ||
+          data.targetValueTwo === undefined
+        ) {
+          return false;
+        }
+        if (
+          typeof data.targetValueOne !== 'number' ||
+          typeof data.targetValueTwo !== 'number'
+        ) {
+          return false;
+        }
+        return data.targetValueOne <= data.targetValueTwo;
+      }
       return true;
     },
     {
       message:
-        'pace target requires targetValueOne/Two as mm:ss (min/km) strings, non-zero; heart_rate target requires targetValueOne/Two as numbers (bpm) with One <= Two',
+        'pace target requires targetValueOne/Two as mm:ss (min/km) strings, non-zero; heart_rate target requires targetValueOne/Two as numbers (bpm) with One <= Two; cadence target requires targetValueOne/Two as numbers (spm) with One <= Two',
     },
   );
 

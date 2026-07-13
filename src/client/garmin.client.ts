@@ -156,6 +156,9 @@ function buildExecutableStep(step: ExecutableStepInput, order: number): Record<s
   } else if (step.targetType === 'heart_rate') {
     result.targetValueOne = step.targetValueOne;
     result.targetValueTwo = step.targetValueTwo;
+  } else if (step.targetType === 'cadence') {
+    result.targetValueOne = step.targetValueOne;
+    result.targetValueTwo = step.targetValueTwo;
   }
 
   return result;

@@ -61,8 +61,9 @@ export function lookupConditionType(key: 'time' | 'distance') {
   return CONDITION_TYPE[key];
 }
 
-export function lookupTargetType(key: 'no.target' | 'pace' | 'heart_rate') {
+export function lookupTargetType(key: 'no.target' | 'pace' | 'heart_rate' | 'cadence') {
   if (key === 'no.target') return TARGET_TYPE.no_target;
   if (key === 'pace') return TARGET_TYPE.pace_zone;
+  if (key === 'cadence') return TARGET_TYPE.cadence;
   return TARGET_TYPE.heart_rate_zone;
 }
